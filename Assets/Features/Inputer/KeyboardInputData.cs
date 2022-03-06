@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace Features.Inputer
 {
+    /// <summary>
+    /// Data for control players from the keyboard
+    /// </summary>
     [CreateAssetMenu(menuName = "ThrowerGame/Datas/" + nameof(KeyboardInputData),
         fileName = nameof(KeyboardInputData))]
     public class KeyboardInputData: ScriptableObject

@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace Features.Player
 {
+    /// <summary>
+    /// Player Information Model
+    /// </summary>
     [CreateAssetMenu(menuName = "ThrowerGame/Datas/" + nameof(PlayerData),
         fileName = nameof(PlayerData))]
     public class PlayerData: ScriptableObject

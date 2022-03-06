@@ -2,6 +2,9 @@ using UnityEngine;
 
 namespace Features.Inputer
 {
+    /// <summary>
+    /// Implementation of inputer for keyboard control
+    /// </summary>
     public class KeyboardInputer: AbstractInputer
     {
         [SerializeField] private KeyboardInputData data;

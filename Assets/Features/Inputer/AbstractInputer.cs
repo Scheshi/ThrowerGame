@@ -3,6 +3,9 @@ using UnityEngine.Events;
 
 namespace Features.Inputer
 {
+    /// <summary>
+    /// Input abstraction for players control
+    /// </summary>
     public abstract class AbstractInputer : MonoBehaviour
     {
         [Header("First player input")]

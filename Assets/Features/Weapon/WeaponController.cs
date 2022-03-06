@@ -5,6 +5,9 @@ using UnityEngine;
 
 namespace Features.Weapon
 {
+    /// <summary>
+    /// Weapon control
+    /// </summary>
     public class WeaponController: MonoBehaviour
     {
         [SerializeField] private Rigidbody rigidbody;
@@ -12,6 +15,9 @@ namespace Features.Weapon
         [SerializeField] private WeaponData data;
         private bool _isThrowing;
 
+        /// <summary>
+        /// This weapon is thrown
+        /// </summary>
         public bool IsTrowing => _isThrowing;
 
         private void Start()
@@ -20,12 +26,21 @@ namespace Features.Weapon
             rigidbody.isKinematic = true;
         }
 
+        /// <summary>
+        /// Pick up or drop a weapon
+        /// </summary>
+        /// <param name="isPickup"></param>
         public void Pickup(bool isPickup)
         {
             rigidbody.constraints = isPickup ? RigidbodyConstraints.FreezePosition : RigidbodyConstraints.None;
             rigidbody.isKinematic = false;
         }
         
+        /// <summary>
+        /// Throw weapon
+        /// </summary>
+        /// <param name="lookDirection">The direction in which to throw the weapon</param>
+        /// <param name="throwForce">Throw momentum strength</param>
         public void Throw(Vector3 lookDirection, float throwForce)
         {
             _isThrowing = true;

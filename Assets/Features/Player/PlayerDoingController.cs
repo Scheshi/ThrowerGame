@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace Features.Player
 {
+    /// <summary>
+    /// Player Action Controller
+    /// </summary>
     public class PlayerDoingController : MonoBehaviour
     {
         [SerializeField] private Transform weaponParent;

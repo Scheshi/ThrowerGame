@@ -3,6 +3,9 @@ using UnityEngine;
 
 namespace Features.Player
 {
+    /// <summary>
+    /// Managing the calculation of the number of lives and armor
+    /// </summary>
     public class PlayerDamagableController: MonoBehaviour, IDamagable
     {
         [SerializeField] private PlayerData data;
