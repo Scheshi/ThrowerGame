@@ -7,6 +7,7 @@ namespace Features.Player
     public class PlayerDoingController : MonoBehaviour
     {
         [SerializeField] private Transform weaponParent;
+        [SerializeField] private Transform barrelPoint;
         [SerializeField] private Rigidbody rigidbody;
         [SerializeField] private PlayerData data;
         private WeaponController _currentWeapon = default;
@@ -15,7 +16,7 @@ namespace Features.Player
         {
             Vector3 forward = transform.forward * zAxis;
             Vector3 right = transform.right * xAxis;
-            Vector3 velocity = forward + right;
+            Vector3 velocity = (forward + right) * data.MovingSpeed;
             velocity.y = rigidbody.velocity.y;
             rigidbody.velocity = velocity;
         }
@@ -24,14 +25,17 @@ namespace Features.Player
         {
             if (!_currentWeapon)
                 return;
+            _currentWeapon.transform.position = barrelPoint.transform.position;
             _currentWeapon.Pickup(false);
             _currentWeapon.transform.parent = null;
-            _currentWeapon.Throw(transform.forward, data.ThrowForce);
+            _currentWeapon.Throw(barrelPoint.forward, data.ThrowForce);
+            _currentWeapon = null;
         }
 
-        private void OnCollisionEnter(Collision other)
+        private void OnTriggerEnter(Collider other)
         {
-            if (other.transform.TryGetComponent(out WeaponController controller))
+            if (other.transform.TryGetComponent(out WeaponController controller) &&
+                (!controller.IsTrowing || data.IsCanTakeThrowingWeapon))
             {
                 _currentWeapon = controller;
                 _currentWeapon.Pickup(true);

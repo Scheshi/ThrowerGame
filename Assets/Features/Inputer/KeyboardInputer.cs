@@ -6,15 +6,15 @@ namespace Features.Inputer
     {
         [SerializeField] private KeyboardInputData data;
         
-        protected override void OnWillMove(out float xAxis, out float zAxis)
+        protected override void OnWillMove(int playerIndex, out float xAxis, out float zAxis)
         {
-            xAxis = Input.GetAxis(data.XAxisMove);
-            zAxis = Input.GetAxis(data.ZAxisMove);
+            xAxis = Input.GetAxis(playerIndex == 1 ? data.XAxisPlayerOneMove : data.XAxisPlayerTwoMove);
+            zAxis = Input.GetAxis(playerIndex == 1 ? data.ZAxisPlayerOneMove : data.ZAxisPlayerTwoMove);
         }
 
-        protected override bool OnWillThrow()
+        protected override bool OnWillThrow(int playerIndex)
         {
-            return Input.GetButtonDown(data.ThrowAxis);
+            return Input.GetButtonDown(playerIndex == 1 ? data.ThrowPlayerOneAxis : data.ThrowPlayerTwoAxis);
         }
     }
 }
